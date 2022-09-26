@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { Box } from "@material-ui/core";
-import {Patient} from "../types";
+import {Gender, Patient} from "../types";
 import { useStateValue} from "../state";
 import { useParams } from "react-router-dom";
+// Icons for the genders
+import FemaleIcon from '@mui/icons-material/Female';
+import MaleIcon from '@mui/icons-material/Male';
 
 const patientPage = (): JSX.Element => {
     //Get the id from the url
@@ -37,15 +40,49 @@ const patientPage = (): JSX.Element => {
             </div>
         );
     } else {
-        return (
-            <div>
-                <Box>
-                    <h1>{patient.name}</h1>
-                    <p>ssn: {patient.ssn}</p>
-                    <p>occupation: {patient.occupation}</p>
-                </Box>
-            </div>
-        );
+        switch (patient.gender) {
+            case Gender.Male:
+                return (
+                    <div>
+                        <Box>
+                            <h1>{patient.name} <MaleIcon></MaleIcon></h1>
+                            <p>SSN: {patient.ssn}</p>
+                            <p>Occupation: {patient.occupation}</p>
+                        </Box>
+                    </div>
+                );
+            case Gender.Female:
+                return (
+                    <div>
+                        <Box>
+                            <h1>{patient.name}<FemaleIcon></FemaleIcon></h1>
+                            <p>SSN: {patient.ssn}</p>
+                            <p>Occupation: {patient.occupation}</p>
+                        </Box>
+                    </div>
+                );
+            case Gender.Other:
+                return (
+                    <div>
+                        <Box>
+                            <h1>{patient.name}</h1>
+                            <p>SSN: {patient.ssn}</p>
+                            <p>Occupation: {patient.occupation}</p>
+                        </Box>
+                    </div>
+                );
+            default:
+                return (
+                    <div>
+                        <Box>
+                            <h1>{patient.name}</h1>
+                            <p>SSN: {patient.ssn}</p>
+                            <p>Occupation: {patient.occupation}</p>
+                        </Box>
+                    </div>
+                );
+        }
+
     }
 };
 

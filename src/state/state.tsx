@@ -42,3 +42,27 @@ export const StateProvider = ({
   );
 };
 export const useStateValue = () => useContext(StateContext);
+
+const setPatientList = (patientList: Patient[]): Action => {
+  return {
+    type: "SET_PATIENT_LIST",
+    payload: patientList
+  };
+};
+
+const setSinglePatient = (patient: Patient): Action => {
+    return {
+        type: "SET_SINGLE_PATIENT",
+        payload: patient
+    };
+};
+
+const addPatient = (patient: Patient): Action => {
+    return {
+        type: "ADD_PATIENT",
+        payload: patient
+    };
+};
+
+// Export the action creators
+export {setPatientList, setSinglePatient, addPatient};

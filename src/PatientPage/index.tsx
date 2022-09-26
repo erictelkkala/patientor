@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { Box } from "@material-ui/core";
-import {Gender, Patient} from "../types";
-import { useStateValue} from "../state";
+import { Gender, Patient } from "../types";
+import { setSinglePatient, useStateValue } from "../state";
 import { useParams } from "react-router-dom";
 // Icons for the genders
 import FemaleIcon from '@mui/icons-material/Female';
@@ -15,13 +15,14 @@ const patientPage = (): JSX.Element => {
     const [state, dispatch] = useStateValue();
     React.useEffect(() => {
         const fetchPatient = async (id: string) => {
+            // If the patient is already in the state, don't fetch it again
             if (state.patient.id !== id) {
                 console.log("Fetching a new patient...");
                 try {
                     const {data} = await axios.get<Patient>(
                         `http://localhost:3001/api/patients/${id}`
                     );
-                    dispatch({type: "SET_SINGLE_PATIENT", payload: data});
+                    dispatch(setSinglePatient(data));
                     setPatient(data);
                 } catch (e) {
                     console.error(e);

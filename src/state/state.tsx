@@ -1,11 +1,12 @@
 import React, {createContext, useContext, useReducer} from "react";
-import {Gender, Patient} from "../types";
+import {Diagnosis, Gender, Patient} from "../types";
 
 import {Action} from "./reducer";
 
 export type State = {
   patients: { [id: string]: Patient };
   patient: Patient;
+  diagnoses: { [code: string]: Diagnosis };
 };
 
 const initialState: State = {
@@ -18,7 +19,8 @@ const initialState: State = {
     occupation: "",
     gender: Gender.Other,
     entries: []
-  }
+  },
+  diagnoses: {}
 };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([
@@ -65,5 +67,12 @@ const addPatient = (patient: Patient): Action => {
     };
 };
 
+const setDiagnosisList = (diagnosisList: Diagnosis[]): Action => {
+    return {
+        type: "SET_DIAGNOSIS_LIST",
+        payload: diagnosisList
+    };
+}
+
 // Export the action creators
-export {setPatientList, setSinglePatient, addPatient};
+export {setPatientList, setSinglePatient, addPatient, setDiagnosisList};

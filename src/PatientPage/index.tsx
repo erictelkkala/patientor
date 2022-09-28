@@ -4,7 +4,7 @@ import { Patient } from "../types";
 import { setSinglePatient, useStateValue } from "../state";
 import { useParams } from "react-router-dom";
 import PatientSection from "./PatientSection";
-import EntrySection from "./EntrySection";
+import EntrySection from "./EntrySection/EntrySection";
 
 const patientPage = (): JSX.Element => {
     //Get the id from the url

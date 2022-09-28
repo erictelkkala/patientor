@@ -72,7 +72,7 @@ const setDiagnosisList = (diagnosisList: Diagnosis[]): Action => {
         type: "SET_DIAGNOSIS_LIST",
         payload: diagnosisList
     };
-}
+};
 
 // Export the action creators
 export {setPatientList, setSinglePatient, addPatient, setDiagnosisList};

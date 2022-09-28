@@ -42,7 +42,6 @@ function EntryDetails(props: { entry: Entry }) {
 }
 
 const EntrySection = ({ entries }: { entries: Entry[] }) => {
-
     return (
         <div>
         <h3>Entries</h3>

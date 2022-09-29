@@ -95,6 +95,9 @@ const EntrySection = ({ entries }: { entries: Entry[] }) => {
     const closeModal = (): void => {
         setModalOpen(false);
         setError(undefined);
+    //    Rerender the component to show the new entry
+    //    TODO: Find a better way to do this
+        window.location.reload();
     };
 
     const submitNewEntry = async (values: EntryFormValues) => {
@@ -120,23 +123,28 @@ const EntrySection = ({ entries }: { entries: Entry[] }) => {
             }
         }
     };
+
     return (
-        <div>
-        <h3>Entries</h3>
-        {/*    For each entry*/}
-        {entries.map((entry) => (
-            <EntryDetails key={entry.id} entry={entry} />
-        ))}
-            <AddEntryModal
-                modalOpen={modalOpen}
-                onSubmit={submitNewEntry}
-                error={error}
-                onClose={closeModal}
-            />
-            <Button variant="contained" onClick={() => openModal()}>
-                Add New Entry
-            </Button>
-        </div>
+        <Box>
+            <h3>Entries</h3>
+            <Box>
+                {/*    For each entry*/}
+                {entries.map((entry) => (
+                    <EntryDetails key={entry.id} entry={entry} />
+                ))}
+            </Box>
+            <Box>
+                <AddEntryModal
+                    modalOpen={modalOpen}
+                    onSubmit={submitNewEntry}
+                    error={error}
+                    onClose={closeModal}
+                />
+                <Button variant="contained" color={"primary"} onClick={() => openModal()}>
+                    Add New Entry
+                </Button>
+            </Box>
+        </Box>
     );
 };
 

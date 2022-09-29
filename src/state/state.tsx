@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useReducer} from "react";
-import {Diagnosis, Gender, Patient} from "../types";
+import {Diagnosis, Entry, Gender, Patient} from "../types";
 
 import {Action} from "./reducer";
 
@@ -74,5 +74,12 @@ const setDiagnosisList = (diagnosisList: Diagnosis[]): Action => {
     };
 };
 
+const addEntry = (entry: Entry, patientID: string): Action => {
+    return {
+        type: "ADD_ENTRY",
+        payload: entry, patientID
+    };
+};
+
 // Export the action creators
-export {setPatientList, setSinglePatient, addPatient, setDiagnosisList};
+export {setPatientList, setSinglePatient, addPatient, setDiagnosisList, addEntry};
